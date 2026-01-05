@@ -5,7 +5,7 @@ Aplikasi web sederhana untuk mengelola produk dan pembelian. Bisa lihat stok pro
 # Akses Website langsung 
 
 akses langsung website untuk mencoba gunakan link berikut 
-[https://transaction-pretest.ngabroger.tech/admin/products](demo website)
+[Demo Website](https://transaction-pretest.ngabroger.tech/admin/products)
 
 ## Fitur
 
