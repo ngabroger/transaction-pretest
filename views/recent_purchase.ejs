@@ -1,0 +1,35 @@
+<% layout('layout') %>
+
+<div class="container">
+  <h2>Tambah Pembelian Baru</h2>
+
+  <% if (errors && errors.length) { %>
+    <div class="errors">
+      <strong>Terjadi kesalahan:</strong>
+      <ul>
+        <% errors.forEach(e => { %><li><%= e %></li><% }) %>
+      </ul>
+    </div>
+  <% } %>
+
+  <form action="/admin/purchase" method="POST">
+    <div class="form-group">
+      <label for="product_id">Pilih Produk</label>
+      <select id="product_id" name="product_id" required>
+        <option value="">-- Pilih Produk --</option>
+        <% products.forEach(p => { %>
+          <option value="<%= p.id %>" <%= old.product_id==p.id ? 'selected' : '' %>>
+            <%= p.name %> - Rp <%= p.price.toLocaleString('id-ID') %>
+          </option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="qty">Jumlah (Qty)</label>
+      <input type="number" id="qty" name="qty" min="1" value="<%= old.qty || 1 %>" required>
+    </div>
+    <div class="form-group">
+      <button type="submit">Simpan Pembelian</button>
+    </div>
+  </form>
+</div>

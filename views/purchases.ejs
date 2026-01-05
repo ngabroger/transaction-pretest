@@ -1,0 +1,44 @@
+<% layout('layout') %>
+
+<div class="container">
+  <h2>Daftar Pembelian</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Produk</th>
+        <th>Qty</th>
+        <th>Total Harga</th>
+        <th>Status</th>
+        <th>Tanggal</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% purchases.forEach(p => { %>
+      <tr>
+        <td><strong>#<%= p.id %></strong></td>
+        <td><%= p.product_name %></td>
+        <td><strong><%= p.qty %></strong></td>
+        <td><strong>Rp <%= p.total_price.toLocaleString('id-ID') %></strong></td>
+        <td>
+          <span class="status-badge <%= p.status === 'active' ? 'status-active' : 'status-cancelled' %>">
+            <%= p.status === 'active' ? '✓ Aktif' : '✗ Dibatalkan' %>
+          </span>
+        </td>
+        <td><%= new Date(p.created_at).toLocaleDateString('id-ID') %></td>
+        <td>
+          <% if (p.status === 'active') { %>
+            <form action="/admin/purchase/<%= p.id %>/cancel" method="POST" style="display:inline">
+              <button class="cancel" type="submit" onclick="return confirm('Batalkan pembelian ini?')">Batalkan</button>
+            </form>
+          <% } else { %>
+            <span style="color: #999;">-</span>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,30 @@
+<% layout('layout') %>
+
+<div class="container">
+  <h2>Daftar Produk & Stok</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nama Produk</th>
+        <th>Harga</th>
+        <th>Stok</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% products.forEach(p => { %>
+      <tr>
+        <td><strong>#<%= p.id %></strong></td>
+        <td><%= p.name %></td>
+        <td><strong>Rp <%= p.price.toLocaleString('id-ID') %></strong></td>
+        <td>
+          <span class="<%= p.quantity <= 5 ? 'stock-low' : 'stock-ok' %>">
+            <%= p.quantity %> unit
+          </span>
+        </td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
+</div>
