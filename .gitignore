@@ -4,6 +4,7 @@ node_modules/
 # Production build
 build/
 dist/
+database.db
 
 # Environment variables
 .env
